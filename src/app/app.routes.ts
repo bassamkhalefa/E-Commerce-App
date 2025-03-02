@@ -15,7 +15,7 @@ export const routes: Routes = [
     },
 
 
-    // { path: "", loadComponent: () => import("../app/core/pages/login/login.component").then(c => c.LoginComponent) },
+    { path: "", loadComponent: () => import("../app/core/pages/login/login.component").then(c => c.LoginComponent) },
     { path: "home", canActivate: [authGuard], loadComponent: () => import("../app/features/pages/home/home.component").then(c => c.HomeComponent) },
     { path: "brands", canActivate: [authGuard], loadComponent: () => import("../app/features/pages/brands/brands.component").then(c => c.BrandsComponent) },
     { path: "categories", canActivate: [authGuard], loadComponent: () => import("../app/features/pages/categories/categories.component").then(c => c.CategoriesComponent) },

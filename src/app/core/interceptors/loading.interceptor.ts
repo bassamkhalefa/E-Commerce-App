@@ -9,12 +9,6 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
 
   spinner.show();
 
-  // setTimeout(() => {
-  //   /** spinner ends after 5 seconds */
-  //   this.spinner.hide();
-  // }, 5000);
-
-
   return next(req).pipe(finalize(() => {
     spinner.hide();
 
