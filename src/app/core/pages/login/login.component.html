@@ -1,0 +1,58 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="max-w-md mx-auto">
+    @if (apiErroe) {<div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        {{apiErroe}}
+    </div>}
+
+
+
+
+    <div class="relative z-0 w-full mb-5 group">
+        @let emailControl =loginForm.get('email') ;
+
+        <!-- <input formControlName="email" type="email" name="floating_email" id="floating_email"
+
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required /> -->
+        <app-custom-input formControlName="email" type="text " placeholder=" " />
+        <label for="floating_email"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            Email</label>
+        <app-error-message [nameControl]="emailControl"></app-error-message>
+    </div>
+
+
+
+
+    <div class="relative z-0 w-full mb-5 group">
+        @let passwordControl =loginForm.get('password') ;
+
+        <!-- <input [type]="toggleInput ? 'text' : 'password' " formControlName="password" name="floating_password"
+            id="floating_password"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required /> -->
+        <app-custom-input formControlName="password" [type]="toggleInput ? 'text' : 'password' " placeholder=" " />
+        <label for="floating_password"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            PassWord</label>
+
+        <span (click)="togglepassword()" class="absolute top-[30%] right-0 cursor-pointer">
+            @if (!toggleInput) {
+            <i class="fa-solid fa-eye-slash"></i>
+            }@else {
+            <i class="fa fa-eye"></i>
+            }
+        </span>
+
+        <app-error-message [nameControl]="passwordControl"></app-error-message>
+    </div>
+
+    <button type="submit"
+        class="text-white bg-main hover:bg-main focus:ring-4 focus:outline-none focus:ring-main font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-main dark:focus:ring-main">
+        @if (isCallingApi) {
+        <i class="fa fa-spin fa-spinner"></i>
+        }@else
+        {Loging}
+    </button>
+
+</form>

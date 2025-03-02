@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+
+
+:root {
+
+    --font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: var(--font-family) !important;
+}

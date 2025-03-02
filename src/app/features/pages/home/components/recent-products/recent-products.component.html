@@ -1,0 +1,7 @@
+<div class="grid md:grid-cols-3 gap-7  lg:grid-cols-5 mb-7 ">
+
+    @for (product of product; track $index) {
+    <app-product-item (fireAddToCarT)="addToCart($event)" [product]="product"></app-product-item>
+    }
+
+</div>

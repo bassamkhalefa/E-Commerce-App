@@ -1,0 +1,101 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()" class="max-w-md mx-auto">
+
+    @if (apiErroe) {<div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        {{apiErroe}}
+    </div>}
+
+    @let nameControl =registerForm.get('name');
+    <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="name" type="text" name="floating_email" id="floating_name"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_name"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            Name </label>
+        <app-error-message [nameControl]="nameControl"></app-error-message>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        @let emailControl =registerForm.get('email') ;
+
+        <input formControlName="email" type="email" name="floating_email" id="floating_email"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_email"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            Email</label>
+
+        <app-error-message [nameControl]="emailControl"></app-error-message>
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        @let passwordControl =registerForm.get('password') ;
+
+        <input formControlName="password" type="password" name="floating_password" id="floating_password"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_password"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            PassWord</label>
+        <app-error-message [nameControl]="passwordControl"></app-error-message>
+
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        @let repasswordControl =registerForm.get('rePassword') ;
+
+        <input formControlName="rePassword" type="password" name="floating_rePassword" id="floating_rePassword"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_rePassword"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            rePassWord</label>
+        @if ( repasswordControl?.touched && ( repasswordControl?.errors || registerForm.getError('misMatch') )) {
+
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Danger</span>
+
+            <div>
+                <span class="font-medium">Ensure that these requirements are met:</span>
+                <ul class="mt-1.5 list-disc list-inside">
+
+                    @if (repasswordControl?.getError('required')) {
+                    <li>password is required</li>
+                    }@else if (repasswordControl?.getError('pattern')) {
+                    <li>invalid password </li>
+                    }@else if (registerForm.getError('misMatch')) {
+                    <li> password and repassword should match </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        @let phoneControl =registerForm.get('phone') ;
+
+        <input formControlName="phone" type="tel" name="floating_phone" id="floating_phone"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_phone"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+            Phone</label>
+        <app-error-message [nameControl]="phoneControl"></app-error-message>
+    </div>
+    <button type="submit" 
+        class="text-white bg-main hover:bg-main focus:ring-4 focus:outline-none focus:ring-main font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-main dark:focus:ring-main">
+        @if (isCallingApi) {
+        <i class="fa fa-spin fa-spinner"></i>
+        }@else
+        {Submit}
+    </button>
+
+
+
+</form>

@@ -1,0 +1,10 @@
+<div class="grid grid-cols-3">
+
+    @for (Category of categories; track $index) {
+    <div class=" mb-4 group hover:border shadow-xl hover:shadow-main">
+        <img [src]="Category.image" class="" alt="">
+        <h2 class="text-center text-2xl">{{Category.name}}</h2>
+    </div>
+
+    }
+</div>
